@@ -1,0 +1,107 @@
+/* font */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src:
+	url(../fonts/TitilliumWeb/TitilliumWeb-Regular.ttf),
+	url(https://fonts.gstatic.com/s/titilliumweb/v4/7XUFZ5tgS-tD6QamInJTcSo_WB_cotcEMUw1LsIE8mM.woff2);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+html{height:100%;}
+html,body{margin:0;padding:0;}
+*{margin:0;padding:0;}
+p{margin:10px 0;}
+
+/*****************
+ * Customization *
+ *****************/
+body{
+    font-family: 'Titillium Web';
+    font-size: 18px;
+}
+
+header{padding:20px 10px 10px}
+
+.map-container{
+  width:100%;
+  position:relative;
+}
+
+.connected{
+  float:right;
+}
+
+.panel.red .panel-heading{
+  background:red!important;
+}
+.panel.blue .panel-heading{
+  background:#337ab7!important;
+}
+
+.panel-heading{
+  color:white!important;
+}
+
+.key{
+  text-transform:capitalize;
+}
+.widgets-container{
+  width:100%;
+  text-align:center;
+  display:inline-block;	
+  background: #eee;
+}
+
+.widget-container{
+  margin:1%;
+  float:left;
+  background:white;
+  padding:10px;
+}
+
+.widget-container.col-50{
+   width:48%;
+}
+
+.widget-container.col-33{
+   width:31.33%;
+}
+
+.widget-container.col-25{
+   width:23%;
+}
+
+ul.payload{
+   list-style:none;
+}
+.payload li{
+   padding-top:10px;
+   padding-bottom:10px;
+   border-bottom: 1px solid #eee;
+}
+
+.payload li:last-child{
+   border-bottom: none;
+}
+.highlight{
+   color:#777;
+}
+#heading{float:none}
+@media (min-width: 601px){
+	#heading{float:left}
+}
+#mqtt-info li{
+   margin:0;
+}
+#mqtt-info{
+   font-size:14px;
+   padding:20px 10px;
+   float:right;
+   list-style:none;
+   background:#eee;
+}
+@media (max-width: 600px){
+  #mqtt-info{float:none;}
+}

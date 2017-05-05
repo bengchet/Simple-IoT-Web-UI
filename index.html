@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel='stylesheet' href='css/app.css'>
+<script src="userConfig.js"></script>
+<script src="js/app.js"></script>
+<script src="js/main.js"></script>
+</head>
+<body ng-controller="MainController">
+<div class="container">
+	<div id="heading">
+		<h1>{{title}}</h1>
+		<p><script>document.write(new Date().getFullYear())</script> Created by <span class="highlight">{{author}}</span></p>
+	</div>
+	<ul id="mqtt-info">	
+		<li>broker: <span class="highlight">{{MQTTbroker}}</span></li>
+		<li>port: <span class="highlight">{{MQTTport}}</span></li>
+		<li>topic: <span class="highlight">{{MQTTsubTopic}}</span></li>
+	</ul>
+	<div style="clear:both"></div>
+	<div class="row">
+	 <div class="col col-lg-6 col-md-6">
+		<div class="map-container" map-lazy-load="{{googleMapApiKey()}}">
+			<ng-map center="4.23398,101.9722963" zoom="6" zoom-to-include-markers="auto">
+				<marker ng-if="devices[i.id].convertedPayload.GPS.lat&&devices[i.id].convertedPayload.GPS.lng" ng-repeat="i in identifiers" position="{{devices[i.id].convertedPayload.GPS.lat}},{{devices[i.id].convertedPayload.GPS.lng}}" title="{{devices[i.id].name}}" animation="Animation.DROP"></marker>
+			</ng-map>
+		</div>
+		<div class="widgets-container">
+             		<div class="widget-container col-33">
+              			<h1>{{identifiers.length}}</h1>
+              			<p>registered</p>
+			</div>
+             		<div class="widget-container col-33">
+              			<h1>{{connected}}</h1>
+              			<p>online</p>
+			</div>
+             		<div class="widget-container col-33">   
+              			<h1>{{identifiers.length - connected}}</h1>
+              			<p>offline</p>
+			</div>
+		</div>
+         </div>
+         <div class="col col-lg-6 col-md-6">
+		<div ng-show="devices.length==0" class="no-sensors-label">
+			<h3>No devices has been detected yet.</h3>
+		</div>
+		<div class="panel panel-default" ng-class="devices[i.id].connected?'blue':'red'" ng-repeat="i in identifiers | orderBy: 'name'">
+			<div class="panel-heading">
+				<b style="text-transform:uppercase">{{devices[i.id].name}}</b>
+               			<p class="connected">{{devices[i.id].connected?'Connected':'Disconnected'}}</p>
+               			<div style="clear:both"></div>
+			</div>
+			<div class="panel-body">
+				<ul class="payload">
+					<li ng-repeat="(key, val) in devices[i.id].convertedPayload">
+						<span class="key">{{key}}</span> :
+						<span ng-if="is_object(val) == false">{{val}}</span>
+						<div style="padding-top:5px" ng-if="is_object(val)">
+							<p style="margin:0 0 0 10px" ng-repeat="(k2,v2) in val">{{k2}}: {{v2}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="panel-footer">
+				<p>Last Seen : {{devices[i.id].ts | amUtc | amLocal | amDateFormat:'dddd, Do MMMM YYYY, h:mm:ss a'}}</p>
+			</div>
+		</div>
+         </div>
+        </div>
+</div>
+</body>
+</html>

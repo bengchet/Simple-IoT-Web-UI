@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Simplify files",
+  "scripts": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^0.6.1",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-clean": "^1.1.0"
+  },
+  "author": "Ng Beng Chet",
+  "license": "ISC"
+}
